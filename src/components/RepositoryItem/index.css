@@ -1,0 +1,23 @@
+.image {
+  height: 500px;
+  width: 500px;
+}
+.image_container {
+  display: flex;
+  margin-bottom: 8px;
+}
+.item {
+  margin: 3px;
+}
+.symbol {
+  height: 50px;
+  width: 50px;
+  margin-left: 5px;
+}
+.item_heading {
+  text-align: center;
+}
+.list_item {
+  background-color: rgb(231, 213, 213);
+  border: 1px solid rgb(43, 42, 42);
+}

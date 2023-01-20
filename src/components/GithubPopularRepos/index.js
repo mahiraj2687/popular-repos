@@ -13,9 +13,10 @@ const languageFiltersData = [
 
 // Write your code here
 class GithubPopularRepos extends Component {
-  state = {finalList: []}
+  state = {finalList: [], isLoading: true}
 
   makingApiCall = async id => {
+    this.setState({isLoading: true, finalList: []})
     const url = `https://apis.ccbp.in/popular-repos?language=${id}`
     const options = {
       method: 'GET',
@@ -30,7 +31,7 @@ class GithubPopularRepos extends Component {
       name: eachRepo.name,
       starsCount: eachRepo.starsCount,
     }))
-    this.setState({finalList: updatedList})
+    this.setState({finalList: updatedList, isLoading: false})
   }
 
   gettingLanguagesList = () => (
@@ -54,12 +55,31 @@ class GithubPopularRepos extends Component {
   )
 
   render() {
-    const {finalList} = this.state
+    const {finalList, isLoading} = this.state
     return (
       <div className="bg_container">
         <h1 className="heading">Popular</h1>
         {this.gettingLanguagesList()}
-        {this.gettingListOfItems(finalList)}
+        {isLoading ? (
+          <div className="loader">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              className="bi bi-arrow-clockwise"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fillRule="evenodd"
+                d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"
+              />
+              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+            </svg>
+          </div>
+        ) : (
+          this.gettingListOfItems(finalList)
+        )}
       </div>
     )
   }

@@ -23,3 +23,12 @@
   justify-content: space-around;
   list-style-type: none;
 }
+.bi-arrow-clockwise {
+  height: 50px;
+  width: 60px;
+  text-align: center;
+  margin: 100px;
+}
+.loader {
+  text-align: center;
+}
